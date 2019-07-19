@@ -1,4 +1,5 @@
 # hello_world
-Just another practice
+Just my first practice to use the GitHub.
 
-Today I want to do some practice, so I could get more information to learn programming.
+# JavaAlgorithm
+This repository is stored some Java code to implement the Algorithm.
