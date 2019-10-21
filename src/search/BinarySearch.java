@@ -38,7 +38,7 @@ public class BinarySearch {
     public static void main(String[] args) {
         int[] nums = {1, 3, 4, 6, 7, 8, 9, 10, 11, 13};
         int target = 6;
-        System.out.println(binarySearch(target, nums));
-        System.out.println(binarySearch(target, nums, 0, nums.length - 1));
+        System.out.println(binarySearch(target, nums)); //true
+        System.out.println(binarySearch(target, nums, 0, nums.length - 1)); //3
     }
 }
