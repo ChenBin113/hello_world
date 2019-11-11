@@ -1,4 +1,4 @@
-# JavaAlgorithm
+# java-algorithm
 [TOC]
 
 
@@ -10,11 +10,11 @@
 
 ## 分类
 
-### [search](src/search)
+### [search](demo/src/search)
 
 - BinarySearch 二分查找
 
-### [sort](src/sort)
+### [sort](demo/src/sort)
 
 - BubbleSort 冒泡排序
 - MergeSort  归并排序
