@@ -12,6 +12,7 @@ public class SelectSort {
 
 
     public static void selectSort(int[] arr) {
+        if (arr == null || arr.length < 2) return;
         for (int i = 0; i < arr.length - 1; i++) {
             int min = i;
             for (int j = i + 1; j < arr.length; j++) {
