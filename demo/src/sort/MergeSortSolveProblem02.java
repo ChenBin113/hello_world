@@ -20,7 +20,7 @@ public class MergeSortSolveProblem02 {
         int less = -1;
         int more = arr.length;
         int cur = 0;
-        while (cur != more && cur < arr.length) {
+        while (cur != more) {
             if (arr[cur] < number) {
                 swap(arr, less + 1, cur);
                 less++;
