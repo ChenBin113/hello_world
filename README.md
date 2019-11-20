@@ -3,26 +3,34 @@
 <!-- MarkdownTOC levels="1,2,3" autolink="true" -->
 
 - [java-algorithm](#java-algorithm)
-	- [说明](#%E8%AF%B4%E6%98%8E)
-	- [分类](#%E5%88%86%E7%B1%BB)
-		- [search](#search)
-		- [sort](#sort)
-	- [排序](#%E6%8E%92%E5%BA%8F)
+    - [说明](#%E8%AF%B4%E6%98%8E)
+    - [分类](#%E5%88%86%E7%B1%BB)
+        - [search](#search)
+        - [sort](#sort)
+    - [排序](#%E6%8E%92%E5%BA%8F)
 - [算法](#%E7%AE%97%E6%B3%95)
-	- [冒泡排序](#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F)
-	- [选择排序](#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F)
-	- [插入排序](#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F)
-	- [归并排序](#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
-		- [小和问题](#%E5%B0%8F%E5%92%8C%E9%97%AE%E9%A2%98)
-		- [逆序对问题](#%E9%80%86%E5%BA%8F%E5%AF%B9%E9%97%AE%E9%A2%98)
-	- [快速排序](#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F)
-		- [问题一](#%E9%97%AE%E9%A2%98%E4%B8%80)
-		- [问题二：荷兰国旗问题](#%E9%97%AE%E9%A2%98%E4%BA%8C%EF%BC%9A%E8%8D%B7%E5%85%B0%E5%9B%BD%E6%97%97%E9%97%AE%E9%A2%98)
-		- [总结](#%E6%80%BB%E7%BB%93)
-		- [经典快排](#%E7%BB%8F%E5%85%B8%E5%BF%AB%E6%8E%92)
-		- [随机快排](#%E9%9A%8F%E6%9C%BA%E5%BF%AB%E6%8E%92)
-	- [堆排序](#%E5%A0%86%E6%8E%92%E5%BA%8F)
-		- [堆的构建](#%E5%A0%86%E7%9A%84%E6%9E%84%E5%BB%BA)
+    - [冒泡排序](#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F)
+    - [选择排序](#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F)
+    - [插入排序](#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F)
+    - [归并排序](#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
+        - [小和问题](#%E5%B0%8F%E5%92%8C%E9%97%AE%E9%A2%98)
+        - [逆序对问题](#%E9%80%86%E5%BA%8F%E5%AF%B9%E9%97%AE%E9%A2%98)
+    - [快速排序](#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F)
+        - [问题一](#%E9%97%AE%E9%A2%98%E4%B8%80)
+        - [问题二：荷兰国旗问题](#%E9%97%AE%E9%A2%98%E4%BA%8C%EF%BC%9A%E8%8D%B7%E5%85%B0%E5%9B%BD%E6%97%97%E9%97%AE%E9%A2%98)
+        - [总结](#%E6%80%BB%E7%BB%93)
+        - [经典快排](#%E7%BB%8F%E5%85%B8%E5%BF%AB%E6%8E%92)
+        - [随机快排](#%E9%9A%8F%E6%9C%BA%E5%BF%AB%E6%8E%92)
+    - [堆排序](#%E5%A0%86%E6%8E%92%E5%BA%8F)
+        - [堆](#%E5%A0%86)
+        - [heapInsert](#heapinsert)
+        - [堆的大小 size](#%E5%A0%86%E7%9A%84%E5%A4%A7%E5%B0%8F-size)
+        - [heapify](#heapify)
+        - [pop](#pop)
+        - [问题一：随时找到数据流的中位数](#%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E9%9A%8F%E6%97%B6%E6%89%BE%E5%88%B0%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0)
+        - [堆排序](#%E5%A0%86%E6%8E%92%E5%BA%8F-1)
+    - [排序算法的稳定性及其汇总](#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%8F%8A%E5%85%B6%E6%B1%87%E6%80%BB)
+    - [排序补充](#%E6%8E%92%E5%BA%8F%E8%A1%A5%E5%85%85)
 - [待定](#%E5%BE%85%E5%AE%9A)
 
 <!-- /MarkdownTOC -->
@@ -49,21 +57,17 @@
 
 ## 排序 
 
-| 方式 | 算法            | 时间复杂度 | 空间复杂度 | 稳定性 | 数据排序情况 |
-| ---- | --------------- | ---------- | ---------- | ------ | ------------ |
-| 交换 | 冒泡排序        | O(n^2)     | O(1)       | 可以   | 无关         |
-|      | 快排 - 随机快排 | O(N*logN)  | O(logN)    | 不可以 | 有关/无关    |
-| 插入 | 直接插入排序    | O(n^2)     | O(1)       | 可以   | 有关         |
-| 选择 | 直接选择排序    | O(n^2)     | O(1)       | 不可以 | 无关         |
-|      | 堆排序          |            |            |        |              |
-| 待定 | 归并排序        | O(N*logN)  | O(N)       |        |              |
-|      | 桶排序          |            |            |        |              |
-|      | 基数排序        |            |            |        |              |
-|      |                 |            |            |        |              |
-
-冒泡排序如何做到稳定？遇到相等的数不交换即可。
-
-插入排序，遇到相等的数即停止比较，插入数组。
+| 方式 | 算法         | 时间复杂度 | 空间复杂度 | 稳定性 | 数据排序情况 |
+| ---- | ------------ | ---------- | ---------- | ------ | ------------ |
+| 交换 | 冒泡排序     | O(n^2)     | O(1)       | 可以   | 无关         |
+|      | 随机快排     | O(N*logN)  | O(logN)    | 不可以 | 无关         |
+| 插入 | 直接插入排序 | O(n^2)     | O(1)       | 可以   | 有关         |
+| 选择 | 直接选择排序 | O(n^2)     | O(1)       | 不可以 | 无关         |
+|      | 堆排序       | O(N*logN)  | O(1)       | 不可以 | 无关         |
+| 分治 | 归并排序     | O(N*logN)  | O(N)       | 可以   | 无关         |
+|      | 桶排序       |            |            |        |              |
+|      | 基数排序     |            |            |        |              |
+|      |              |            |            |        |              |
 
 # 算法
 
@@ -433,13 +437,412 @@ public static int[] partition(int[] arr, int left, int right) {
 
 ## 堆排序
 
-### 堆的构建
+注意，堆这个结构需要知道什么是满二叉树、完全二叉树。堆就是完全二叉树。
 
-以构建大根堆为例，heapInsert 将
+### 堆
+
+使用数组存储数据，用数组模拟二叉堆结构，此时下标的关系有：
+
+- 父结点 i 的左子结点为 2i + 1，右子结点为 2i + 2
+- 子结点 i 找父结点公式为：(i - 1) / 2
+
+堆分大根堆和小根堆，每一个结点为子树的最大值称为大根堆，同理可知小根堆。
+
+以大根堆为例学习堆排序算法，小根堆同理做一些转换即可。
+
+### heapInsert
+
+构建堆时，heapInsert 是非常重要的构建方法。
+
+建立 i 个数的堆，算法的时间复杂度为
+$$
+log(!(i-1)) = log1 + log2 + ··· + log(i-1)
+$$
+数学证明，最终得到建立过程的时间复杂度为 O(N)。
+
+```java
+public static void heapInsert(int[] arr, int i) {
+    //每一次插入新结点，与父结点做比较，调整堆结构
+    while (arr[i] > arr[(i - 1) / 2]) {
+        swap(arr, i, (i - 1) / 2);
+        i = (i - 1) / 2;
+    }
+}
+```
+
+### 堆的大小 size
+
+堆在内存中可以使用数组实现，数组有数组的长度 length，堆有堆的大小 size，关系为：size <= length。当堆增加一个数时，使用 heapInsert，size++；当堆大小减少时，直接使用 size--，数组中的元素可以保留。
+
+### heapify
+
+两个字：**下沉**！堆排序的核心。
+
+堆中的数据进行修改的时候 heapify 是非常重要的调整方法。调整的时间复杂度为 O(logN)。
+
+当大根堆构建完成后，堆内第 i 个数变小，此时堆结构需要调整。
+
+思路：确保 i 的子结点仍是堆内数据，比较得到两个子结点中的最大值，与 i 结点比较大小。如果 i 结点数大，则堆结构保持不变；否则，将 i 结点与子结点交换位置。循环上述堆结构调整流程。
+
+```java
+public static void heapify(int[] arr, int index, int heapSize) {
+    int left = index * 2 + 1;
+    while (left < heapSize) {
+        //比较得到子结点较大值索引
+        int largest = (left + 1) < heapSize && arr[left] < arr[left + 1]
+            ? left + 1
+            : left;
+        //父结点和子结点比较
+        largest = arr[index] < arr[largest] 
+            ? largest
+            : index;
+        //数据改变了，但是仍保持大根堆结构
+        if (largest == index) {
+            break;
+        }
+        swap(arr, index, largest);
+        //准备下一轮循环的条件
+        index = largest;
+        left = index * 2 + 1;
+    }
+}
+```
+
+### pop
+
+将堆顶的数弹出，可以用 size - 1 位上的数和堆顶的数交换位置，然后 size--，最后进行 heapify 操作。
+
+### 问题一：随时找到数据流的中位数
+
+有一个源源不断地吐出整数的数据流，要求做到可以随时取得之前吐出所有数的中位数。这时可以使用两个堆：一个大根堆和一个小根堆存放数据，大根堆最大值小于小根堆的最小值。
+
+思路：
+
+```java
+//处理数据流
+假设大根堆堆顶为 big，小根堆堆顶为 small
+获取第一个数，先进大根堆，这一步不硬性规定的
+获取第二个数，比较
+	if (num <= big) 进大根堆
+	else 进小根堆
+在处理了数据后，根据 Math.abs(big_size - small_size) < 2 的条件决定是否调整堆结构
+	if true 不调整
+	else
+		if big_size 大，则大根堆执行 pop 操作，小根堆执行 heapInsert 操作
+		else 小根堆执行 pop 操作，大根堆执行 heapInsert 操作
+	
+//计算中位数
+if big_size = small_size return (big + small) / 2
+else
+    if big_size > small_size return big
+    else return small
+```
+
+```java
+public class _295_FindMedianfromDataStream {
+    PriorityQueue<Integer> small_heap;
+    PriorityQueue<Integer> big_heap;
+
+    /** initialize your data structure here. */
+    public _295_FindMedianfromDataStream() {
+        small_heap = new PriorityQueue<>();
+        big_heap = new PriorityQueue<>((a, b) -> b - a);
+    }
+
+    // version 1.0
+    /*public void addNum(int num) {
+        if (big_heap.isEmpty() && small_heap.isEmpty()) {
+            big_heap.offer(num);
+            return;
+        }
+        if (big_heap.size() == 1 && small_heap.isEmpty()) {
+            if (big_heap.peek() > num) {
+                small_heap.offer(big_heap.poll());
+                big_heap.offer(num);
+            } else {
+                small_heap.offer(num);
+            }
+            return;
+        }
+        //当堆为空时，num 和 堆内元素比较会出现空指针错误
+        if (small_heap.size() == big_heap.size()) {
+            if (num < big_heap.peek()) {
+                big_heap.offer(num);
+            } else {
+                small_heap.offer(num);
+            }
+        } else if (small_heap.size() < big_heap.size()) {
+            if (num > big_heap.peek()) {
+                small_heap.offer(num);
+            } else {
+                small_heap.offer(big_heap.peek());
+                big_heap.poll();
+                big_heap.offer(num);
+            }
+        } else {
+            if (num < small_heap.peek()) {
+                big_heap.offer(num);
+            } else {
+                big_heap.offer(small_heap.peek());
+                small_heap.poll();
+                small_heap.offer(num);
+            }
+        }
+    }
+     */
+
+    // version 2.0
+    public void addNum(int num) {
+        if (big_heap.isEmpty() && small_heap.isEmpty()) {
+            big_heap.offer(num);
+            return;
+        }
+        if (num <= big_heap.peek()) {
+            big_heap.offer(num);
+        } else {
+            small_heap.offer(num);
+        }
+
+        if (Math.abs(big_heap.size() - small_heap.size()) > 1) {
+            if (big_heap.size() > small_heap.size()) {
+                small_heap.offer(big_heap.poll());
+            } else {
+                big_heap.offer(small_heap.poll());
+            }
+        }
+    }
+
+    public double findMedian() {
+        double res;
+        if (small_heap.size() == big_heap.size()) {
+            res = (small_heap.peek() + big_heap.peek()) / 2.0;
+        } else if (small_heap.size() > big_heap.size()) {
+            res = small_heap.peek();
+        } else {
+            res = big_heap.peek();
+        }
+        return res;
+    }
+}
+```
+
+上面是我做 LeetCode_295 题的代码，原理是相近的。此前做的时候绕了一些弯路，得到 version 1.0 版。
+
+代码中使用了 Java 的优先级队列 ProrityQueue，在创建大根堆过程中使用了比较器。其实优先级队列就是堆的一种实现，不需要自己实现 heapInsert 和 heapify。
+
+注意：PriorityQueue 的一些方法异同点
+
+| 作用 | 抛出异常  | 返回值   |
+| ---- | --------- | -------- |
+| 插入 | add(e)    | offer(e) |
+| 删除 | remove()  | poll()   |
+| 查看 | element() | peek()   |
+
+
+
+### 堆排序
+
+三步：
+
+- 堆顶和堆尾部交换位置
+- 堆的大小减 1
+- heapify 调整
+
+大根堆完成从小到大的排序，小根堆完成从大到小的排序。
+
+```java
+public static void heapSort(int[] arr) {
+    if (arr == null || arr.length < 2) {
+        return;
+    }
+    for (int i = 0; i < arr.length; i++) {
+        heapInsert(arr, i);
+    }
+    int heapSize = arr.length;
+    while (heapSize != 0) {
+        swap(arr, 0, heapSize - 1);
+        heapSize--;
+        //此处可以简化成一步
+        //swap(arr, 0, --heapSize);
+        heapify(arr, 0, heapSize);
+    }
+}
+```
+
+```java
+/*和左神代码局部对比*/
+//basic
+int heapSize = arr.length;
+while (heapSize != 0) {
+    swap(arr, 0, heapSize - 1);
+    heapSize--;
+    heapify(arr, 0, heapSize);
+}
+
+//advanced
+int size = arr.length;
+swap(arr, 0, --size);
+while (size > 0) {
+    heapify(arr, 0, size);
+    swap(arr, 0, --size);
+}
+```
+
+从局部代码中可以看到，左神的代码利用了前面判断的 arr.length > 2 的条件，少使用了一次 while 判断 size 的过程。
+
+## 排序算法的稳定性
+
+排序的稳定性，指原有数据相同值的原始次序不变。
+
+可以：
+
+- 冒泡排序遇到相等的数不交换即可做到稳定。
+
+- 插入排序，遇到相等的数即停止比较，插入数组。
+
+- 归并排序 merge 过程中，遇到相等的值先填入左区域的值就可以做到稳定。
+
+不可以：
+
+- 选择排序不能做到稳定性，选择数值的时候交换数字是会打乱原始的次序。
+
+- 随机快排不具有稳定性，因此荷兰国旗问题也是不能做到稳定性的。
+- 堆排序。
+
+稳定性的意义：
+
+- 现实工程中需要**保持上一次排序时遗留的信息**，比如学校的成绩排序，第一次查询以成绩高低排序，第二次查询以班级排序，如果排序算法具有稳定性，就可以保留上一次查询的信息，那么第二次查询得到的结果就是以班级和成绩高低两项指标排序的成绩。
+
+## 排序总结
+
+工程上的排序算法是综合排序：先调用快排或归并排序，再调用插入排序。
+
+在样本量小于 60 的时候使用插入排序，对比冒泡排序和选择排序，插入排序的时间复杂度是受数据状况影响的，范围是 [O(n), O(n^2)] ， 而且其代码简洁，常数项低；
+
+样本量大于 60 的时候，在能使用快排的场景下，如不用区分数据的差异，不追求稳定性，这时选用快排，因为其非常简洁，操作少，常数项低；需要区分数据的差异，要求算法具有稳定性的时候使用归并排序。
+
+工程中需要将快排和归并排序的递归调用部分改写成非递归的调用。
+
+归并排序空间复杂度是 O(N)，可以变成 O(1)，使用的是“内部缓存法”。还有一种叫原地归并排序，也是将空间复杂度变成 O(1)，但是时间复杂度变成 O(n^2)，这时候使用归并排序的意义就不是很重要了。
+
+快排是可以变成具有稳定性的，很难，具体看“01 stable sort”，属于论文级别的算法了。有一类题目，要求将数组的数按照奇偶分排两侧，保持稳定性，说的就是“01 stable sort”。
+
+## 比较器
+
+当排序不是程序的主要内容时，使用自定义比较器能够较快的实现排序目的。需要实现 Comparator 接口。
+
+
+```java
+/**
+ * 比较器
+ */
+public class ComparatorTest01 {
+    public static void main(String[] args) {
+        Integer[] arr = {4, 5, 3, 2, 4, 5, 6, 72, 4, 7, 2, 4};
+        Arrays.sort(arr, new MyComparator());
+        System.out.println(Arrays.toString(arr));
+    }
+}
+
+class MyComparator implements Comparator<Integer> {
+    @Override
+    public int compare(Integer o1, Integer o2) {
+        return o2 - o1;
+    }
+}
+```
+
+在构建 PriorityQueue 、 TreeMap 、 TreeSet 时可以传入一个比较器，这时候加入自定义数据类型就会根据制定的比较器规则进行排序。
+
+举个例子：设计一个比较的类 Person，将会对 Person 类的属性 id 进行比较。
+
+```java
+class Person {
+    private int id;
+    private String name;
+
+    public Person() {
+    }
+
+    public Person(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
+```
+
+然后设计一个比较器 IdComparator，将
+
+```java
+class IdComparator implements Comparator<Person> {
+    @Override
+    public int compare(Person o1, Person o2) {
+        return o2.getId() - o1.getId();
+    }
+}
+```
+
+测试一下
+
+```java
+public class ComparatorTest02 {
+    public static void main(String[] args) {
+        Person p1 = new Person(1, "张三");
+        Person p2 = new Person(2, "李四");
+        Person p3 = new Person(3, "王五");
+
+        TreeSet<Person> set = new TreeSet<>(new IdComparator());
+        set.add(p1);
+        set.add(p2);
+        set.add(p3);
+
+        for (Person p : set) {
+            System.out.println(p);
+        }
+    }
+}
+```
+
+```java
+output:
+Person{id=3, name='王五'}
+Person{id=2, name='李四'}
+Person{id=1, name='张三'}
+```
+
+查看以上的输出结果，自定义比较器做到了以 Id 降序比较，TreeSet 构建方法传入了比较器。
+
+## 非基于比较的排序
+
+桶排序，基数排序，计数排序。
+
+三者都能做到排序的稳定性。
 
 # 待定
-
-堆排序，二叉堆
 
 缓存淘汰算法 LRU (Least Recently Used) 哈希链表
 
