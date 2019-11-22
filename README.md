@@ -879,11 +879,36 @@ o2 - o1
 
 ### 问题一：假设存在一组数据，里面的数据只有 0 ~ 60 ，使用非基于比较的排序
 
-此时可以使用计数排序，准备 61 个桶并编号 0 ~ 60 (具体实现可以是一个长度为 61 的数组，也可以是其他的数据结构，桶只是一个抽象的概念)，然后将数据遍历，按照数值放入对应编号的桶中。
+思路：
+
+此时可以使用**计数排序**，准备 61 个桶并编号 0 ~ 60 (具体实现可以是一个长度为 61 的数组，也可以是其他的数据结构，桶只是一个抽象的概念)，然后将数据遍历，按照数值放入对应编号的桶中。
 
 按次序遍历桶，如果 0 号桶存放的数字为5，则打印 5 个 0 ，最终就可以得到一个排序的数列。
 
-如果此时数据范围变得较大，如 0 ~ 1,000,000,000 ，则不宜使用计数排序，基数排序。基数排序只准备 10 个桶，将数据的最大值和最小值作为区间，分成 10 等分，将数据按照桶的范围分别装入。 
+```java
+public static void bucketSort(int[] arr) {
+    if (arr == null || arr.length < 2) return;
+    //由于知道数据的范围，桶的大小才能确定
+    int[] bucket = new int[61];
+    //不知道数据的范围
+    //int max = Integer.MIN_VALUE;
+    //for (int i = 0; i < arr.length; i++) {
+    //    max = Math.max(max, arr[i]);
+	//}
+    //int[] bucket = new int[max + 1];
+    for (int i = 0; i < arr.length; i++) {
+        bucket[arr[i]]++;
+	}
+    int arr_index = 0;
+    for (int j = 0; j < bucket.length; j++) {
+        while (bucket[j]-- > 0) {
+            arr[arr_index++] = j;
+        }
+	}
+}
+```
+
+如果此时数据范围变得较大，如 0 ~ 1,000,000,000 ，则不宜使用计数排序，应该使用基数排序。**基数排序**只准备 10 个桶，将数据的最大值和最小值作为区间，分成 10 等分，将数据按照桶的范围分别装入。 
 
 ### 问题二：给定一个数组，求如果排序之后，相邻两数的最大差值，要求时间复杂度 O(n)，且要求不能用非基于比较的排序
 
@@ -891,11 +916,15 @@ o2 - o1
 
 对于 N 个数，准备 N + 1 个桶，目的是预留一个空桶，此后有大作用。
 
-找到数组的最大值 max 和最小值 min，如果 max == min，返回 0；否则，按照桶排序的规则划分成 N + 1 个数据范围。
+遍历数组，找到数组的最大值 max 和最小值 min，如果 max == min，返回 0；否则，按照桶排序的规则划分成 N + 1 个数据范围。
 
 此时 N + 1 个桶装 N 个数，一定会存在一个空桶，这时候有一个推论，**相邻两个数的最大差值一定不来自同一个桶**。
 
-桶需要记录三个参数，桶的数据范围，桶中数字最大值和最小值。
+- 空桶不可能是第一个桶和最后一个桶
+- 空桶左右肯定是非空桶
+- 空桶左桶的 max 值和右桶的 min 值的差值一定大于空桶的容纳数的范围
+
+桶需要记录三个参数，桶是否存过数 boolean，桶中数字最大值和最小值。
 
 所以在将一个个数填入桶时，及时更新桶中数字最大值和最小值。
 
@@ -906,6 +935,56 @@ o2 - o1
 为什么不求空桶两侧？
 
 空桶两侧的数据不一定是最大差值，因为一个桶的范围如果是 d，则空桶两侧的数值差最小可为 d + 2，而相邻的非空桶最大差值可为 2d - 2。不能保证 d + 2 必定大于 2d - 2。预留一个桶的设计目的是为了推出**最大差值是来自不同桶的结论**，而不能推出来自空桶两侧的结论。
+
+实现：
+
+```java
+public static int maxGroup(int[] arr) {
+    if (arr == null || arr.length < 2) return 0;
+
+    //查找数组最大值和最小值
+    int max = Integer.MIN_VALUE;
+    int min = Integer.MAX_VALUE;
+    int len = arr.length;
+    for (int i = 0; i < len; i++) {
+        max = Math.max(max, arr[i]);
+        min = Math.min(min, arr[i]);
+    }
+    if (max == min) return 0;
+
+    //创建桶中三个存储的信息
+    boolean[] hasNum = new boolean[len + 1];
+    int[] maxNum = new int[len + 1];
+    int[] minNum = new int[len + 1];
+
+    //遍历更新桶中的信息
+    for (int i = 0; i < len; i++) {
+        int index = bucket(arr[i], min, max, len);
+        //此处可避免初始化数组的值的影响
+        maxNum[index] = hasNum[index] ? Math.max(maxNum[index], arr[i]) : arr[i];
+        minNum[index] = hasNum[index] ? Math.min(minNum[index], arr[i]) : arr[i];
+        hasNum[index] = true;
+    }
+
+    //遍历得到相邻两个数的最大差值
+    int res = 0;
+    int lastMax = maxNum[0];
+    //注意此处的 i 从 1 开始，遍历的是桶，桶长度是 len + 1
+    for (int i = 1; i <= len; i++) {
+        if (hasNum[i]) {
+            res = Math.max(res, minNum[i] - lastMax);
+            lastMax = maxNum[i];
+        }
+    }
+    return res;
+}
+
+public static int bucket(int number, int min, int max, int length) {
+    return (int) (number - min) * length / (max - min);
+}
+```
+
+
 
 # 待定
 
