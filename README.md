@@ -8,7 +8,7 @@
 		- [search](#search)
 		- [sort](#sort)
 	- [排序](#%E6%8E%92%E5%BA%8F)
-- [算法](#%E7%AE%97%E6%B3%95)
+- [排序](#%E6%8E%92%E5%BA%8F-1)
 	- [冒泡排序](#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F)
 	- [选择排序](#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F)
 	- [插入排序](#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F)
@@ -36,6 +36,12 @@
 	- [非基于比较的排序](#%E9%9D%9E%E5%9F%BA%E4%BA%8E%E6%AF%94%E8%BE%83%E7%9A%84%E6%8E%92%E5%BA%8F)
 		- [问题一：假设存在一组数据，里面的数据只有 0 ~ 60 ，使用非基于比较的排序](#%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%81%87%E8%AE%BE%E5%AD%98%E5%9C%A8%E4%B8%80%E7%BB%84%E6%95%B0%E6%8D%AE%EF%BC%8C%E9%87%8C%E9%9D%A2%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%AA%E6%9C%89-0-%7E-60-%EF%BC%8C%E4%BD%BF%E7%94%A8%E9%9D%9E%E5%9F%BA%E4%BA%8E%E6%AF%94%E8%BE%83%E7%9A%84%E6%8E%92%E5%BA%8F)
 		- [问题二：给定一个数组，求如果排序之后，相邻两数的最大差值，要求时间复杂度 O\(n\)，且要求不能用非基于比较的排序](#%E9%97%AE%E9%A2%98%E4%BA%8C%EF%BC%9A%E7%BB%99%E5%AE%9A%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%EF%BC%8C%E6%B1%82%E5%A6%82%E6%9E%9C%E6%8E%92%E5%BA%8F%E4%B9%8B%E5%90%8E%EF%BC%8C%E7%9B%B8%E9%82%BB%E4%B8%A4%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BC%EF%BC%8C%E8%A6%81%E6%B1%82%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-on%EF%BC%8C%E4%B8%94%E8%A6%81%E6%B1%82%E4%B8%8D%E8%83%BD%E7%94%A8%E9%9D%9E%E5%9F%BA%E4%BA%8E%E6%AF%94%E8%BE%83%E7%9A%84%E6%8E%92%E5%BA%8F)
+- [数组 - 栈 - 队列](#%E6%95%B0%E7%BB%84---%E6%A0%88---%E9%98%9F%E5%88%97)
+	- [使用数组模拟栈和队列](#%E4%BD%BF%E7%94%A8%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97)
+	- [设计 getMin\(\) 操作时间复杂度为 O\(1\) 的栈](#%E8%AE%BE%E8%AE%A1-getmin-%E6%93%8D%E4%BD%9C%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%BA-o1-%E7%9A%84%E6%A0%88)
+	- [使用栈实现队列](#%E4%BD%BF%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97)
+	- [使用队列实现栈](#%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88)
+	- [猫狗队列问题](#%E7%8C%AB%E7%8B%97%E9%98%9F%E5%88%97%E9%97%AE%E9%A2%98)
 - [待定](#%E5%BE%85%E5%AE%9A)
 
 <!-- /MarkdownTOC -->
@@ -62,19 +68,19 @@
 
 ## 排序 
 
-| 方式 | 算法         | 时间复杂度 | 空间复杂度 | 稳定性 | 数据排序情况 |
-| ---- | ------------ | ---------- | ---------- | ------ | ------------ |
-| 交换 | 冒泡排序     | O(n^2)     | O(1)       | 可以   | 无关         |
-|      | 随机快排     | O(N*logN)  | O(logN)    | 不可以 | 无关         |
-| 插入 | 直接插入排序 | O(n^2)     | O(1)       | 可以   | 有关         |
-| 选择 | 直接选择排序 | O(n^2)     | O(1)       | 不可以 | 无关         |
-|      | 堆排序       | O(N*logN)  | O(1)       | 不可以 | 无关         |
-| 分治 | 归并排序     | O(N*logN)  | O(N)       | 可以   | 无关         |
-|      | 桶排序       |            |            |        |              |
-|      | 基数排序     |            |            |        |              |
-|      |              |            |            |        |              |
+| 方式   | 算法         | 时间复杂度 | 空间复杂度 | 稳定性 | 数据排序情况 |
+| ------ | ------------ | ---------- | ---------- | ------ | ------------ |
+| 交换   | 冒泡排序     | O(n^2)     | O(1)       | 可以   | 无关         |
+|        | 随机快排     | O(N*logN)  | O(logN)    | 不可以 | 无关         |
+| 插入   | 直接插入排序 | O(n^2)     | O(1)       | 可以   | 有关         |
+| 选择   | 直接选择排序 | O(n^2)     | O(1)       | 不可以 | 无关         |
+|        | 堆排序       | O(N*logN)  | O(1)       | 不可以 | 无关         |
+| 分治   | 归并排序     | O(N*logN)  | O(N)       | 可以   | 无关         |
+| 非比较 | 计数排序     | O(N)       | O(N)       | 不可以 | 有关         |
+|        | 基数排序     | O(N)       | O(N)       | 不可以 | 有关         |
 
-# 算法
+
+# 排序
 
 ## 冒泡排序
 
@@ -984,13 +990,360 @@ public static int bucket(int number, int min, int max, int length) {
 }
 ```
 
+# 数组 - 栈 - 队列
 
+## 使用数组模拟栈和队列
+
+使用数组模拟栈，包括栈的 push、pop 和 peek 操作。
+
+```java
+public class ArrayStack {
+    private Integer[] arr;
+    private Integer size;
+
+    public ArrayStack(int initSize) {
+        if (initSize < 0) {
+            throw new IllegalArgumentException("栈的大小不能小于 0");
+        }
+        arr = new Integer[initSize];
+        size = 0;
+    }
+
+    public Integer peek() {
+        if (size == 0) {
+            return null;
+        }
+        return arr[size - 1];
+    }
+
+    public void push(Integer number) {
+        if (size == arr.length) {
+            throw new ArrayIndexOutOfBoundsException("栈已满！");
+        }
+        arr[size++] = number;
+    }
+
+    public Integer pop() {
+        if (size == 0) {
+            throw new ArrayIndexOutOfBoundsException("栈已空！");
+        }
+        return arr[--size];
+    }
+}
+```
+
+使用数组模拟队列，包括队列的 offer、poll 和 peek 操作。
+
+```java
+public class ArrayQueue {
+    private Integer[] arr;
+    private Integer size;
+    private Integer first;
+    private Integer last;
+
+    public ArrayQueue(int initSize) {
+        if (initSize < 0) {
+            throw new IllegalArgumentException("队列长度不能小于 0！");
+        }
+        arr = new Integer[initSize];
+        size = 0;
+        //first 指向队首的位置
+        first = 0;
+        //last 指向队尾后空的位置
+        last = 0;
+    }
+
+    public void offer(int number) {
+        if (size == arr.length) {
+            throw new ArrayIndexOutOfBoundsException("队列已满！");
+        }
+        arr[last++] = number;
+        last = last < arr.length ? last : 0;
+        size++;
+    }
+
+    public Integer poll() {
+        if (size == 0) {
+            throw new ArrayIndexOutOfBoundsException("队列已空！");
+        }
+        int res =  arr[first++];
+        first = first < arr.length ? first : 0;
+        size--;
+        return res;
+    }
+
+    public Integer peek() {
+        if (size == 0) {
+            return null;
+        }
+        return arr[first];
+    }
+}
+```
+
+
+
+## 设计 getMin() 操作时间复杂度为 O(1) 的栈
+
+设计一个栈，获取栈内最小值操作为 O(1)，兼具栈的 push、pop 功能。
+
+```java
+public class MyStack {
+    private Stack<Integer> stackData;
+    private Stack<Integer> stackMin;
+
+    public MyStack() {
+        this.stackData = new Stack<>();
+        this.stackMin = new Stack<>();
+    }
+
+    public void push(int number) {
+        if (this.stackMin.isEmpty()) {
+            this.stackMin.push(number);
+        } else {
+            int temp = this.stackMin.peek();
+            if (temp < number) {
+                this.stackMin.push(temp);
+            } else {
+                this.stackMin.push(number);
+            }
+        }
+        this.stackData.push(number);
+    }
+
+    public Integer pop() {
+        if (this.stackData.isEmpty()) {
+            throw new RuntimeException("栈已空！");
+        }
+        this.stackMin.pop();
+        return this.stackData.pop();
+    }
+
+    public Integer getMin() {
+        if (this.stackData.isEmpty()) {
+            throw new RuntimeException("栈已空！");
+        }
+        return this.stackMin.peek();
+    }
+}
+```
+
+
+
+## 使用栈实现队列
+
+stack1 专门用来添加数据 offer()，stack2 专门用来查看和弹出数据 peek() poll()。
+
+addStack2() 有两个前提：
+
+- stack1 非空
+- stack1 需要将所有数据转移到 stack2
+
+```java
+public class StackToQueue {
+    private Stack<Integer> stack1;
+    private Stack<Integer> stack2;
+
+    public StackToQueue() {
+        this.stack1 = new Stack<>();
+        this.stack2 = new Stack<>();
+    }
+
+    public void offer(int number) {
+        this.stack1.push(number);
+        addStack2();
+    }
+
+    public Integer peek() {
+        if (this.stack2.isEmpty()) {
+            return null;
+        }
+        return this.stack2.peek();
+    }
+
+    private void addStack2() {
+        while (!this.stack1.isEmpty()) {
+            this.stack2.push(this.stack1.pop());
+        }
+    }
+
+    public Integer poll() {
+        if (this.stack2.isEmpty()) {
+            throw new RuntimeException("队列已空！");
+        }
+        return this.stack2.pop();
+    }
+}
+```
+
+
+
+## 使用队列实现栈
+
+使用两个队列，一个是存储队列，一个是 help 队列。
+
+helper()
+
+- 将 queue 队列的数据转移到 help 队列中，只留下 queue 队列尾部的一个元素作为返回值
+
+swap()
+
+- 将 queue 队列和 help 队列的引用互换
+
+```java
+public class QueueToStack {
+    private Queue<Integer> queue;
+    private Queue<Integer> help;
+
+    public QueueToStack() {
+        this.queue = new LinkedList<>();
+        this.help = new LinkedList<>();
+    }
+
+    public void push(int number) {
+        queue.offer(number);
+    }
+
+    public Integer peek() {
+        if (queue.isEmpty()) {
+            return null;
+        }
+        int res = helper();
+        help.offer(res);
+        swap();
+        return res;
+    }
+
+    //将数据从 queue 转移到 help 中，留下一个数
+    private Integer helper() {
+        while (queue.size() > 1) {
+            help.offer(queue.poll());
+        }
+        return queue.poll();
+    }
+
+    private void swap() {
+        Queue<Integer> temp = queue;
+        queue = help;
+        help = temp;
+    }
+
+    public Integer pop() {
+        if (queue.isEmpty()) {
+            throw new RuntimeException("栈已空");
+        }
+        int res = helper();
+        swap();
+        return res;
+    }
+}
+```
+
+## 猫狗队列问题
+
+经典的问题，不赘述。思路是先将 Pet 这个类包装一下，打上时间戳，增加了一个变量 count。
+
+```java
+class PetEntry {
+    private Pet pet;
+    private long count;
+
+    public PetEntry(Pet pet, long count) {
+        this.pet = pet;
+        this.count = count;
+    }
+
+    public Pet getPet() {
+        return this.pet;
+    }
+
+    public long getCount() {
+        return this.count;
+    }
+
+    public String getEntryPetType() {
+        return this.pet.getPetType();
+    }
+}
+```
+
+然后将获得的一个个 PetEntry 对象添加到队列中，在添加的时候就会对 PetEntry 对象的类型做判断，如果是 Cat 类就进入 catQ，如果是 Dog 类就进入 dogQ。
+
+```java
+public class DogCatQueue {
+    private Queue<PetEntry> dogQ;
+    private Queue<PetEntry> catQ;
+    private long count;
+
+    public DogCatQueue() {
+        this.dogQ = new LinkedList<>();
+        this.catQ = new LinkedList<>();
+        this.count = 0;
+    }
+
+    public void add(Pet pet) {
+        if (pet.getPetType().equals("dog")) {
+            this.dogQ.offer(new PetEntry(pet, this.count++));
+        } else if (pet.getPetType().equals("cat")) {
+            this.catQ.offer(new PetEntry(pet, this.count++));
+        } else {
+            throw new RuntimeException("宠物需为猫或狗");
+        }
+    }
+
+    public Pet pollAll() {
+        if (!this.dogQ.isEmpty() && !this.catQ.isEmpty()) {
+            if (this.dogQ.peek().getCount() < this.catQ.peek().getCount()) {
+                return this.dogQ.poll().getPet();
+            } else {
+                return this.catQ.poll().getPet();
+            }
+        } else if (this.dogQ.isEmpty()) {
+            return this.catQ.poll().getPet();
+        } else if (this.catQ.isEmpty()) {
+            return this.dogQ.poll().getPet();
+        } else {
+            throw new RuntimeException("队列已空！");
+        }
+    }
+
+    public Dog pollDog() {
+        if (this.dogQ.isEmpty()) {
+            throw new RuntimeException("狗队列为空！");
+        }
+        return (Dog) this.dogQ.poll().getPet();
+    }
+
+    public Cat pollCat() {
+        if (this.catQ.isEmpty()) {
+            throw new RuntimeException("猫队列为空！");
+        }
+        return (Cat) this.catQ.poll().getPet();
+    }
+
+    public boolean isEmpty() {
+        return this.dogQ.isEmpty() && this.catQ.isEmpty();
+    }
+
+    public boolean isDogQueueEmpty() {
+        return this.dogQ.isEmpty();
+    }
+
+    public boolean isCatQueueEmpty() {
+        return this.catQ.isEmpty();
+    }
+}
+```
+
+严格来说这不是一个算法题目，而是一个工程类题目，使用了装饰者设计模式，对原有的类进行包装，成为一个 Entry 类。
 
 # 待定
 
 缓存淘汰算法 LRU (Least Recently Used) 哈希链表
 
 Map
+
+使用队列实现图的深度优先搜索 => 使用两个队列实现栈结构，使用自定义的栈结构实现图的深度优先搜索
 
 
 
