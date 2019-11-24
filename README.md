@@ -1337,6 +1337,107 @@ public class DogCatQueue {
 
 严格来说这不是一个算法题目，而是一个工程类题目，使用了装饰者设计模式，对原有的类进行包装，成为一个 Entry 类。
 
+# 矩阵问题
+
+## 问题一：转圈打印矩阵
+
+给定一个整型矩阵matrix，请按照转圈的方式打印它。要求：额外空间复杂度为O(1)。
+
+```java
+例如：
+[ 1  2  3  4 
+  5  6  7  8 
+  9 10 11 12 
+ 13 14 15 16 ]
+打印结果为：
+1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10
+```
+
+本题可以在 [LeetCode 54 螺旋矩阵](https://leetcode-cn.com/problems/spiral-matrix/)测试结果。
+
+### 思路：
+
+定义一个方法，以左上角的点和右下角的点开始，从边界开始打印矩形。打印一圈后循环遍历内圈的矩形，直到整个矩形打印完毕。有一些特殊的情况，比如打印的是一条竖线，或者横线，或者一个点，都没有关系，注意代码的边界即可。
+
+### 实现：
+
+```java
+public static void spiralOrderPrint(int[][] matrix, int tR, int tC, int dR, int dC) {
+    //三种情况：横线，竖线，矩形
+    if (tR == dR) {
+        while (tC <= dC) {
+            System.out.printf("%3d", matrix[tR][tC++]);
+        }
+    } else if (tC == dC) {
+        while (tR <= dR) {
+            System.out.printf("%3d", matrix[tR++][tC]);
+        }
+    } else {
+        int tmpC = tC;
+        int tmpR = tR;
+        while (tC < dC) {
+            System.out.printf("%3d", matrix[tR][tC++]);
+        }
+        while (tR < dR) {
+            System.out.printf("%3d", matrix[tR++][tC]);
+        }
+        while (tC > tmpC) {
+            System.out.printf("%3d", matrix[tR][tC--]);
+        }
+        while (tR > tmpR) {
+            System.out.printf("%3d", matrix[tR--][tC]);
+        }
+    }
+
+
+}
+
+public static void printMatrix(int[][] matrix) {
+    System.out.println("-----------PrintMatrixInSpiralOrder.printMatrix-----------");
+    int tR = 0;
+    int tC = 0;
+    int dR = matrix.length - 1;
+    int dC = matrix[0].length - 1;
+    while (tR <= dR) {
+        spiralOrderPrint(matrix, tR++, tC++, dR--, dC--);
+    }
+}
+```
+
+### 测试：
+
+```java
+public static void main(String[] args) {
+    int[][] matrix = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12},
+        {13, 14, 15, 16}
+    };
+
+    for (int[] arr : matrix) {
+        for (int n : arr) {
+            System.out.printf("%3d", n);
+        }
+        System.out.println();
+    }
+
+    printMatrix(matrix);
+}
+```
+
+```java
+output:
+  1  2  3  4
+  5  6  7  8
+  9 10 11 12
+ 13 14 15 16
+-----------PrintMatrixInSpiralOrder.printMatrix-----------
+  1  2  3  4  8 12 16 15 14 13  9  5  6  7 11 10
+```
+
+
+
 # 待定
 
 缓存淘汰算法 LRU (Least Recently Used) 哈希链表
