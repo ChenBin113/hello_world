@@ -4,27 +4,27 @@ public class PrintMatrixInSpiralOrder {
     public static void spiralOrderPrint(int[][] matrix, int tR, int tC, int dR, int dC) {
         //三种情况：横线，竖线，矩形
         if (tR == dR) {
-            while (tC <= dC) {
-                System.out.printf("%3d", matrix[tR][tC++]);
+            for (int i = tC; i <= dC; i++) {
+                System.out.printf("%3d", matrix[tR][i]);
             }
         } else if (tC == dC) {
-            while (tR <= dR) {
-                System.out.printf("%3d", matrix[tR++][tC]);
+            for (int i = tR; i <= dR; i++) {
+                System.out.printf("%3d", matrix[i][tC]);
             }
         } else {
             int tmpC = tC;
             int tmpR = tR;
-            while (tC < dC) {
-                System.out.printf("%3d", matrix[tR][tC++]);
+            while (tmpC < dC) {
+                System.out.printf("%3d", matrix[tR][tmpC++]);
             }
-            while (tR < dR) {
-                System.out.printf("%3d", matrix[tR++][tC]);
+            while (tmpR < dR) {
+                System.out.printf("%3d", matrix[tmpR++][dC]);
             }
-            while (tC > tmpC) {
-                System.out.printf("%3d", matrix[tR][tC--]);
+            while (tC < tmpC) {
+                System.out.printf("%3d", matrix[dR][tmpC--]);
             }
-            while (tR > tmpR) {
-                System.out.printf("%3d", matrix[tR--][tC]);
+            while (tR < tmpR) {
+                System.out.printf("%3d", matrix[tmpR--][tC]);
             }
         }
 
@@ -37,7 +37,8 @@ public class PrintMatrixInSpiralOrder {
         int tC = 0;
         int dR = matrix.length - 1;
         int dC = matrix[0].length - 1;
-        while (tR <= dR) {
+        //横线，竖线等特殊形式都囊括在内
+        while (tR <= dR && tC <= dC) {
             spiralOrderPrint(matrix, tR++, tC++, dR--, dC--);
         }
     }
