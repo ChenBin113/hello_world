@@ -27,8 +27,6 @@ public class PrintMatrixInSpiralOrder {
                 System.out.printf("%3d", matrix[tmpR--][tC]);
             }
         }
-
-
     }
 
     public static void printMatrix(int[][] matrix) {
