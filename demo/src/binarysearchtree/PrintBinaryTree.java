@@ -1,32 +1,37 @@
 package binarysearchtree;
 
+import util.TreeNode;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class PrintBinaryTree {
 	public static void printTree(TreeNode root) {
-		Queue<TreeNode> queue = new LinkedList<>();
 		TreeNode last = null;
 		TreeNode nlast = null;
+		Queue<TreeNode> queue = new LinkedList<>();
 		queue.offer(root);
 		last = root;
 		nlast = root;
 		while (!queue.isEmpty()) {
-			TreeNode t = queue.peek();
-			System.out.println(queue.poll() + " ");
-			if (t.left != null){
-				queue.offer(t.left);
-				nlast = t.left;
+			TreeNode tmp = queue.poll();
+			System.out.print(tmp.val + " ");
+			if (tmp.left != null) {
+				queue.offer(tmp.left);
+				nlast = tmp.left;
 			}
-			if (t.right != null){
-				queue.offer(t.right);
-				nlast = t.right;
+			if (tmp.right != null) {
+				queue.offer(tmp.right);
+				nlast = tmp.right;
 			}
-			if (t == last){
+			if (tmp == last) {
 				last = nlast;
 				System.out.println();
 			}
 		}
 	}
 
-    public static void main(String[] args) {    
+    public static void main(String[] args) {
 		// ¹¹½¨¶þ²æÊ÷
 		TreeNode root = new TreeNode(1);
 		root.left = new TreeNode(2);
@@ -36,7 +41,6 @@ public class PrintBinaryTree {
 		root.right.right = new TreeNode(6);
 		root.right.left.left = new TreeNode(7);
 		root.right.left.right = new TreeNode(8);
-		Tree test = new Tree();
-		test.printTree(root);
-    }
+		printTree(root);
+	}
 }

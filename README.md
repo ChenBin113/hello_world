@@ -17,7 +17,7 @@
 		- [逆序对问题](#%E9%80%86%E5%BA%8F%E5%AF%B9%E9%97%AE%E9%A2%98)
 	- [快速排序](#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F)
 		- [问题一](#%E9%97%AE%E9%A2%98%E4%B8%80)
-		- [问题二：荷兰国旗问题](#%E9%97%AE%E9%A2%98%E4%BA%8C%EF%BC%9A%E8%8D%B7%E5%85%B0%E5%9B%BD%E6%97%97%E9%97%AE%E9%A2%98)
+		- [问题二 荷兰国旗问题](#%E9%97%AE%E9%A2%98%E4%BA%8C-%E8%8D%B7%E5%85%B0%E5%9B%BD%E6%97%97%E9%97%AE%E9%A2%98)
 		- [总结](#%E6%80%BB%E7%BB%93)
 		- [经典快排](#%E7%BB%8F%E5%85%B8%E5%BF%AB%E6%8E%92)
 		- [随机快排](#%E9%9A%8F%E6%9C%BA%E5%BF%AB%E6%8E%92)
@@ -27,21 +27,47 @@
 		- [堆的大小 size](#%E5%A0%86%E7%9A%84%E5%A4%A7%E5%B0%8F-size)
 		- [heapify](#heapify)
 		- [pop](#pop)
-		- [问题一：随时找到数据流的中位数](#%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E9%9A%8F%E6%97%B6%E6%89%BE%E5%88%B0%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0)
+		- [问题一 随时找到数据流的中位数](#%E9%97%AE%E9%A2%98%E4%B8%80-%E9%9A%8F%E6%97%B6%E6%89%BE%E5%88%B0%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0)
 		- [堆排序](#%E5%A0%86%E6%8E%92%E5%BA%8F-1)
 	- [排序算法的稳定性](#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7)
 	- [排序总结](#%E6%8E%92%E5%BA%8F%E6%80%BB%E7%BB%93)
 	- [比较器](#%E6%AF%94%E8%BE%83%E5%99%A8)
 	- [比较器的一点思考](#%E6%AF%94%E8%BE%83%E5%99%A8%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83)
 	- [非基于比较的排序](#%E9%9D%9E%E5%9F%BA%E4%BA%8E%E6%AF%94%E8%BE%83%E7%9A%84%E6%8E%92%E5%BA%8F)
-		- [问题一：假设存在一组数据，里面的数据只有 0 ~ 60 ，使用非基于比较的排序](#%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%81%87%E8%AE%BE%E5%AD%98%E5%9C%A8%E4%B8%80%E7%BB%84%E6%95%B0%E6%8D%AE%EF%BC%8C%E9%87%8C%E9%9D%A2%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%AA%E6%9C%89-0-%7E-60-%EF%BC%8C%E4%BD%BF%E7%94%A8%E9%9D%9E%E5%9F%BA%E4%BA%8E%E6%AF%94%E8%BE%83%E7%9A%84%E6%8E%92%E5%BA%8F)
-		- [问题二：给定一个数组，求如果排序之后，相邻两数的最大差值，要求时间复杂度 O\(n\)，且要求不能用非基于比较的排序](#%E9%97%AE%E9%A2%98%E4%BA%8C%EF%BC%9A%E7%BB%99%E5%AE%9A%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%EF%BC%8C%E6%B1%82%E5%A6%82%E6%9E%9C%E6%8E%92%E5%BA%8F%E4%B9%8B%E5%90%8E%EF%BC%8C%E7%9B%B8%E9%82%BB%E4%B8%A4%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BC%EF%BC%8C%E8%A6%81%E6%B1%82%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-on%EF%BC%8C%E4%B8%94%E8%A6%81%E6%B1%82%E4%B8%8D%E8%83%BD%E7%94%A8%E9%9D%9E%E5%9F%BA%E4%BA%8E%E6%AF%94%E8%BE%83%E7%9A%84%E6%8E%92%E5%BA%8F)
+		- [问题一 计数排序和基数排序](#%E9%97%AE%E9%A2%98%E4%B8%80-%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F%E5%92%8C%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F)
+		- [问题二 使用非基于比较排序](#%E9%97%AE%E9%A2%98%E4%BA%8C-%E4%BD%BF%E7%94%A8%E9%9D%9E%E5%9F%BA%E4%BA%8E%E6%AF%94%E8%BE%83%E6%8E%92%E5%BA%8F)
 - [数组 - 栈 - 队列](#%E6%95%B0%E7%BB%84---%E6%A0%88---%E9%98%9F%E5%88%97)
 	- [使用数组模拟栈和队列](#%E4%BD%BF%E7%94%A8%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97)
 	- [设计 getMin\(\) 操作时间复杂度为 O\(1\) 的栈](#%E8%AE%BE%E8%AE%A1-getmin-%E6%93%8D%E4%BD%9C%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%BA-o1-%E7%9A%84%E6%A0%88)
 	- [使用栈实现队列](#%E4%BD%BF%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97)
 	- [使用队列实现栈](#%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88)
 	- [猫狗队列问题](#%E7%8C%AB%E7%8B%97%E9%98%9F%E5%88%97%E9%97%AE%E9%A2%98)
+- [矩阵问题](#%E7%9F%A9%E9%98%B5%E9%97%AE%E9%A2%98)
+	- [问题一 转圈打印矩阵](#%E9%97%AE%E9%A2%98%E4%B8%80-%E8%BD%AC%E5%9C%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5)
+		- [思路](#%E6%80%9D%E8%B7%AF)
+		- [实现](#%E5%AE%9E%E7%8E%B0)
+		- [测试](#%E6%B5%8B%E8%AF%95)
+	- [问题二 旋转正方形矩阵](#%E9%97%AE%E9%A2%98%E4%BA%8C-%E6%97%8B%E8%BD%AC%E6%AD%A3%E6%96%B9%E5%BD%A2%E7%9F%A9%E9%98%B5)
+		- [思路](#%E6%80%9D%E8%B7%AF-1)
+		- [实现](#%E5%AE%9E%E7%8E%B0-1)
+		- [测试](#%E6%B5%8B%E8%AF%95-1)
+		- [小总结](#%E5%B0%8F%E6%80%BB%E7%BB%93)
+	- [问题三 之字形打印矩阵](#%E9%97%AE%E9%A2%98%E4%B8%89-%E4%B9%8B%E5%AD%97%E5%BD%A2%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5)
+		- [思路](#%E6%80%9D%E8%B7%AF-2)
+		- [实现](#%E5%AE%9E%E7%8E%B0-2)
+		- [测试](#%E6%B5%8B%E8%AF%95-2)
+		- [小总结](#%E5%B0%8F%E6%80%BB%E7%BB%93-1)
+	- [问题四 在行列都排好序的矩阵中找数](#%E9%97%AE%E9%A2%98%E5%9B%9B-%E5%9C%A8%E8%A1%8C%E5%88%97%E9%83%BD%E6%8E%92%E5%A5%BD%E5%BA%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%89%BE%E6%95%B0)
+		- [思路](#%E6%80%9D%E8%B7%AF-3)
+		- [实现](#%E5%AE%9E%E7%8E%B0-3)
+		- [测试](#%E6%B5%8B%E8%AF%95-3)
+- [链表](#%E9%93%BE%E8%A1%A8)
+	- [问题一 反转单向和双向链表](#%E9%97%AE%E9%A2%98%E4%B8%80-%E5%8F%8D%E8%BD%AC%E5%8D%95%E5%90%91%E5%92%8C%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8)
+		- [反转单向链表](#%E5%8F%8D%E8%BD%AC%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8)
+		- [反转双向链表](#%E5%8F%8D%E8%BD%AC%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8)
+- [二叉树](#%E4%BA%8C%E5%8F%89%E6%A0%91)
+	- [二叉树按层遍历打印](#%E4%BA%8C%E5%8F%89%E6%A0%91%E6%8C%89%E5%B1%82%E9%81%8D%E5%8E%86%E6%89%93%E5%8D%B0)
+	- [二叉树的序列化和反序列化](#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96)
 - [待定](#%E5%BE%85%E5%AE%9A)
 
 <!-- /MarkdownTOC -->
@@ -70,14 +96,15 @@
 
 | 方式   | 算法         | 时间复杂度 | 空间复杂度 | 稳定性 | 数据排序情况 |
 | ------ | ------------ | ---------- | ---------- | ------ | ------------ |
-| 交换   | 冒泡排序     | O(n^2)     | O(1)       | 可以   | 无关         |
-|        | 随机快排     | O(N*logN)  | O(logN)    | 不可以 | 无关         |
-| 插入   | 直接插入排序 | O(n^2)     | O(1)       | 可以   | 有关         |
-| 选择   | 直接选择排序 | O(n^2)     | O(1)       | 不可以 | 无关         |
-|        | 堆排序       | O(N*logN)  | O(1)       | 不可以 | 无关         |
-| 分治   | 归并排序     | O(N*logN)  | O(N)       | 可以   | 无关         |
-| 非比较 | 计数排序     | O(N)       | O(N)       | 不可以 | 有关         |
-|        | 基数排序     | O(N)       | O(N)       | 不可以 | 有关         |
+| 交换   | 冒泡排序     | O(n^2)     | O(1)       | 稳定   | 无关         |
+|        | 随机快排     | O(N*logN)  | O(logN)    | 不稳定 | 无关         |
+| 插入   | 直接插入排序 | O(n^2)     | O(1)       | 稳定   | 有关         |
+|        | 希尔排序     | O(n^3/2^)  | O(1)       | 不稳定 |              |
+| 选择   | 直接选择排序 | O(n^2)     | O(1)       | 不稳定 | 无关         |
+|        | 堆排序       | O(N*logN)  | O(1)       | 不稳定 | 无关         |
+| 分治   | 归并排序     | O(N*logN)  | O(N)       | 稳定   | 无关         |
+| 非比较 | 计数排序     | O(N)       | O(N)       | 不稳定 | 有关         |
+|        | 基数排序     | O(N)       | O(N)       | 不稳定 | 有关         |
 
 
 # 排序
@@ -134,6 +161,29 @@ public static void insertSort(int[] arr) {
 ```
 
 插入排序，有可能是 O(n) 也有可能是 O(n^2)，和数据是否已经有序有关。
+
+## 希尔排序
+
+```java
+public static void shellSort(int[] array) {
+    int gap = array.length;
+    while (true) {
+        if (gap == 1) {
+            break;
+        }
+        gap /= 2;
+        for (int i = gap; i < array.length; i++) {
+            for (int j = i; j - gap >= 0; j = j - gap) {
+                if (array[j] < array[j - gap]) {
+                    swap(array, j, j - gap);
+                }
+            }
+        }
+    }
+}
+```
+
+希尔排序的关键是**步长的选择**，时间复杂度为 O(n^3/2^)。
 
 ## 归并排序
 
@@ -274,7 +324,7 @@ output: [1, 4, 23, 6, 23, 56, 34, 76, 34]
 
 输出的数组分成两个部分，小于等于 30 和大于 30 的。
 
-### 问题二：荷兰国旗问题
+### 问题二 荷兰国旗问题
 
 给定一个数组 arr，和一个数 num，请把小于 num 的数放在数组的左边，等于 num 的数放在数组的中间，大于 num 的数放在数组的右边。
 
@@ -523,7 +573,7 @@ public static void heapify(int[] arr, int index, int heapSize) {
 
 将堆顶的数弹出，可以用 size - 1 位上的数和堆顶的数交换位置，然后 size--，最后进行 heapify 操作。
 
-### 问题一：随时找到数据流的中位数
+### 问题一 随时找到数据流的中位数
 
 有一个源源不断地吐出整数的数据流，要求做到可以随时取得之前吐出所有数的中位数。这时可以使用两个堆：一个大根堆和一个小根堆存放数据，大根堆最大值小于小根堆的最小值。
 
@@ -883,7 +933,9 @@ o2 - o1
 
 非基于比较的排序有桶排序，基数排序，计数排序。这三者都能做到排序的稳定性，时间复杂度为 O(n)，空间复杂度为 O(n)。
 
-### 问题一：假设存在一组数据，里面的数据只有 0 ~ 60 ，使用非基于比较的排序
+### 问题一 计数排序和基数排序
+
+假设存在一组数据，里面的数据只有 0 ~ 60 ，使用非基于比较的排序。
 
 思路：
 
@@ -914,11 +966,15 @@ public static void bucketSort(int[] arr) {
 }
 ```
 
-如果此时数据范围变得较大，如 0 ~ 1,000,000,000 ，则不宜使用计数排序，应该使用基数排序。**基数排序**只准备 10 个桶，将数据的最大值和最小值作为区间，分成 10 等分，将数据按照桶的范围分别装入。 
+如果此时数据范围变得较大，如 0 ~ 1,000,000,000 ，则不宜使用计数排序，应该使用基数排序。**基数排序**只准备 10 个桶，分别编号 0 ~ 9，从个位开始，按照个位数的值进入桶，按照桶编号从小到大倒出数。循环，依次比较十位、百位、千位··· 
 
-### 问题二：给定一个数组，求如果排序之后，相邻两数的最大差值，要求时间复杂度 O(n)，且要求不能用非基于比较的排序
+### 问题二 使用非基于比较排序
 
-思路：
+给定一个数组，求如果排序之后，相邻两数的最大差值，要求时间复杂度 O(n)，且要求不能用非基于比较的排序。
+
+这个问题是要求不能用非基于比较的排序，那如果用非基于比较的排序如何做？
+
+思路如下：
 
 对于 N 个数，准备 N + 1 个桶，目的是预留一个空桶，此后有大作用。
 
@@ -1339,7 +1395,7 @@ public class DogCatQueue {
 
 # 矩阵问题
 
-## 问题一：转圈打印矩阵
+## 问题一 转圈打印矩阵
 
 给定一个整型矩阵matrix，请按照转圈的方式打印它。
 
@@ -1438,7 +1494,7 @@ output:
   1  2  3  4  8 12 16 15 14 13  9  5  6  7 11 10
 ```
 
-## 问题二：旋转正方形矩阵
+## 问题二 旋转正方形矩阵
 
 给定一个整型正方形矩阵 matrix，请把该矩阵调整成**逆时针旋转 90 度**的样子。
 
@@ -1546,7 +1602,7 @@ public static void printMatrix(int[][] matrix) {
 
 问题一和问题二都是矩阵的调整打印问题，采用的思路都很相似，从外围出发，一圈一圈向中心进攻。不要一直着眼在细节处，从宏观的角度浓缩出规律，再在细节处下功夫，如坐标的变换也是重点。这是一种比较通用的方法，把复杂的坐标变换浓缩成规律的活动，多训练这种思考方式，才能更便捷的解决问题。
 
-## 问题三：“之”字形打印矩阵
+## 问题三 之字形打印矩阵
 
 给定一个矩阵matrix，按照“之”字形的方式打印这个矩阵，例如：
 
@@ -1638,7 +1694,7 @@ dC = dR == row ? dC + 1 : dC;
 dR = dR == row ? dR : dR + 1;
 ```
 
-## 问题四：在行列都排好序的矩阵中找数
+## 问题四 在行列都排好序的矩阵中找数
 
 给定一个有 N * M 的整型矩阵 matrix 和一个整数 K，matrix 的每一行和每一 列都是排好序的。实现一个函数，判断 K 是否在 matrix 中。
 
@@ -1706,7 +1762,7 @@ public static void main(String[] args) {
 
 # 链表
 
-## 问题一：反转单向和双向链表
+## 问题一 反转单向和双向链表
 
 分别实现反转单向链表和反转双向链表的函数。
 
@@ -1767,13 +1823,78 @@ public static DoubleNode reverse(DoubleNode head) {
 
 
 
+## 问题二 打印两个有序链表的公共部分
+
+给定两个有序链表的头指针 head1 和 head2，打印两个链表的公共部分。
+
+思路：类似于比较两个有序数组共同具有的有序部分。
+
+```java
+public static void printCommonPart(Node head1, Node head2) {
+    if (head1 == null || head2 == null) return;
+    while (head1 != null && head2 != null) {
+    	if (head1.val == head2.val) {
+            System.out.print(head1.val + " ");
+            head1 = head1.next;
+            head2 = head2.next;
+        } else if (head1.val < head2.val) {
+            head1 = head1.next;
+        } else {
+            head2 = head2.next;
+        }
+    }
+}
+```
+
+
+
+## 问题三 判断一个链表是否为回文结构
+
+给定一个链表的头节点 head，请判断该链表是否为回文结构。
+
+```
+1->2->1，返回 true。
+1->2->2->1，返回 true。
+15->6->15，返回true。
+1->2->3，返回false。
+```
+
+思路：第一次遍历，使用一个栈结构存储节点，第二次遍历，与弹出栈存储的值比较，相同为 true 不同为 false。也可以使用快慢指针得到链表的中点，然后将中点后的值压栈，然后重头开始遍历，省下一半的栈空间，但是在计算空间复杂度时还是会忽略不计系数。
+
+```java
+public static boolean isPalindrome() {
+    
+    
+}
+```
+
+
+
+进阶：如果链表长度为N，时间复杂度达到O(N)，额外空间复杂度达到O(1)。
+
+思路：
+
+```java
+1.快慢指针，得到链表的中点，将中点后的节点逆序。
+1->2->3->2->1
+1->2->3<-2<-1
+↑           ↑
+2.两端开始遍历，当两根指针相遇说明是回文结构，当值不相等的时候说明不是回文结构
+3.最后，将中点的后的节点再逆序
+1->2->3->2->1
+```
+
+
+
+
+
+
+
 
 
 # 二叉树
 
-## 二叉树打印
-
-### 二叉树按层遍历
+## 二叉树按层遍历打印
 
 宽度优先遍历，通常使用队列结构。常常有**按照层数换行**的问题。
 
@@ -1783,11 +1904,13 @@ public static DoubleNode reverse(DoubleNode head) {
         2		3
        /       / \
       4       5   6
-                
+             / \
+            7   8    
 output:
 1
 2 3
 4 5 6
+7 8
 ```
 
 思路：
@@ -1801,35 +1924,236 @@ nlast 跟踪的是最新加入 queue 的数。
 实现：
 
 ```java
-public static void printTree(Node head) {
-    Queue<Node> queue = new LinkedList<>();
-    Node last = null;
-    Node nlast = null;
-    while (head != null) {
-    	queue.offer(head);
-        
+public void printTree(TreeNode root) {
+    TreeNode last = null;
+    TreeNode nlast = null;
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+    last = root;
+    nlast = root;
+    while (!queue.isEmpty()) {
+        TreeNode tmp = queue.poll();
+        System.out.print(tmp.val + " ");
+        if (tmp.left != null) {
+            queue.offer(tmp.left);
+            nlast = tmp.left;
+        }
+        if (tmp.right != null) {
+            queue.offer(tmp.right);
+            nlast = tmp.right;
+        }
+        if (tmp == last) {
+            last = nlast;
+            System.out.println();
+        }
     }
-    
-    
-    
+}
+```
+
+测试：
+
+```java
+public static void main(String[] args) {
+    // 构建二叉树
+    TreeNode root = new TreeNode(1);
+    root.left = new TreeNode(2);
+    root.right = new TreeNode(3);
+    root.left.left = new TreeNode(4);
+    root.right.left = new TreeNode(5);
+    root.right.right = new TreeNode(6);
+    root.right.left.left = new TreeNode(7);
+    root.right.left.right = new TreeNode(8);
+    PrintBinaryTree test = new PrintBinaryTree();
+    test.printTree(root);
 }
 ```
 
 
 
+## 二叉树的序列化和反序列化
 
+方式：先序遍历，中序遍历，后序遍历，层序遍历。
 
+给定一个二叉树的头节点 head，节点值的类型是 32 位整型。设计序列化和反序列化方案。
 
+使用树的前序遍历实现序列化：
 
+```java
+public static String serializedBinaryTree(TreeNode root) {
+    StringBuilder sb = new StringBuilder();
+    preOrderTraversal(root, sb);
+    return sb.toString();
+}
 
+private static void preOrderTraversal(TreeNode node, StringBuilder sb) {
+    if (node == null) {
+        sb.append("#!");
+        return;
+    }
+    sb.append(node.val).append("!");
+    preOrderTraversal(node.left, sb);
+    preOrderTraversal(node.right, sb);
+}
+```
+
+测试：
+
+```java
+public static void main(String[] args) {
+    // 构建二叉树
+    TreeNode root = new TreeNode(1);
+    root.left = new TreeNode(2);
+    root.right = new TreeNode(3);
+    root.left.left = new TreeNode(4);
+    root.right.left = new TreeNode(5);
+    root.right.right = new TreeNode(6);
+    root.right.left.left = new TreeNode(7);
+    root.right.left.right = new TreeNode(8);
+    System.out.println(serializedBinaryTree(root));
+}
+```
+
+输出结果：
+
+```java
+output:
+1!2!4!#!#!#!3!5!7!#!#!8!#!#!6!#!#!
+```
+
+其中 # 表示节点为空，! 是分隔符。
+
+实现反序列化：
+
+```java
+public static TreeNode deSerializedBinaryTree(String tree) {
+    String[] s = tree.split("!");
+    Queue<TreeNode> queue = new LinkedList<>();
+    for (int i = 0; i < s.length; i++) {
+        TreeNode node = null;
+        if (s[i].equals("#")) {
+            node = new TreeNode(Integer.MIN_VALUE);
+        } else {
+            node = new TreeNode(Integer.parseInt(s[i]));
+        }
+        queue.offer(node);
+    }
+    TreeNode root = queue.poll();
+    makeTree(root, queue);
+    return root;
+}
+
+private static void makeTree(TreeNode root, Queue<TreeNode> queue) {
+    if (root == null || root.val == Integer.MIN_VALUE) {
+        return;
+    }
+    root.left = queue.poll();
+    makeTree(root.left, queue);
+    root.right = queue.poll();
+    makeTree(root.right, queue);
+}
+```
+
+测试，借用了此前实现序列化的树反序列化：
+
+```java
+public static void main(String[] args) {
+    // 构建二叉树
+    TreeNode root = new TreeNode(1);
+    root.left = new TreeNode(2);
+    root.right = new TreeNode(3);
+    root.left.left = new TreeNode(4);
+    root.right.left = new TreeNode(5);
+    root.right.right = new TreeNode(6);
+    root.right.left.left = new TreeNode(7);
+    root.right.left.right = new TreeNode(8);
+    System.out.println(serializedBinaryTree(root));
+
+    String s = serializedBinaryTree(root);
+    TreeNode tree = deSerializedBinaryTree(s);
+    printTree(tree);
+}
+```
+
+输出，借用了此前二叉树按层遍历打印的方法，其中空节点用整型的最小值代替：
+
+```java
+		    1
+         /     \
+        2		3
+       /       / \
+      4       5   6
+             / \
+            7   8  
+
+output:
+1 
+2 3 
+4 -2147483648 5 6 
+-2147483648 -2147483648 7 8 -2147483648 -2147483648 
+-2147483648 -2147483648 -2147483648 -2147483648 
+```
+
+# 数组
+
+## 问题一
+
+已知一个几乎有序的数组，几乎有序是指，如果把数组排好顺序的话，每个元素移动的距离不超过 k，并且 k 相对于数组长度来说很小。请问选择什么方法对其排序比较好。
+
+改进的堆排序，每次构建 K 个数的小根堆，一共循环 N 次，时间复杂度为 O(N*logK)。
+
+## 问题二
+
+判断数组中是否有重复值。必须保证额外空间复杂度为 O(1)。
+
+如果没有空间复杂度限制，可以使用哈希表实现。时间复杂度和空间复杂度都为 O(N)。
+
+先排序，再判断。可以选择堆排序，改写非递归的实现。
+
+## 问题三
+
+把两个有序数组合并为一个数组。第一个数组空间正好可以容纳两个数组的元素。
+
+使用双指针，从数组尾部开始比较，将数字依次拷贝到长数组中。
+
+## 问题四
+
+求需要排序的最短子数组长度。
+
+例如 `[1, 5, 4, 3, 2, 6, 7]` 则返回的长度是 `4` ，因为只有 `[5, 4, 3, 2]` 需要排序。
+
+最优解可以做到时间复杂度 O(N) 空间复杂度 O(1)。
+
+思路：
+
+```java
+从左往右遍历，用变量 MAX 记录遍历时顺序排列的最大值，而后将遍历的数与 MAX 比较，记录下比 MAX 值小的最右值的下标，index = 4
+0  1  2  3  4  5  6
+1, 5, 4, 3, 2, 6, 7
+  MAX       ↑
+  
+从右往左遍历，用变量 MIN 记录遍历时顺序排列的最小值，而后将遍历的数与 MIN 比较，记录下比 MIN 值大的最左值的下标，index = 1
+0  1  2  3  4  5  6
+1, 5, 4, 3, 2, 6, 7
+   ↑       MIN
+   
+此时计算从索引 1 到索引 4 的长度为 4
+```
+
+## 问题五
+
+给定一个整型数组 arr，返回排序的数组相邻两数的最大差值。
+
+使用桶排序的思想，可以做到时间复杂度为 O(N)，空间复杂度为 O(N)。[可参考](#%E9%97%AE%E9%A2%98%E4%BA%8C-%E4%BD%BF%E7%94%A8%E9%9D%9E%E5%9F%BA%E4%BA%8E%E6%AF%94%E8%BE%83%E6%8E%92%E5%BA%8F)。
 
 # 待定
 
-缓存淘汰算法 LRU (Least Recently Used) 哈希链表
+- [ ] 缓存淘汰算法 LRU (Least Recently Used) 哈希链表
 
-Map
+- [ ] Map
 
-使用队列实现图的深度优先搜索 => 使用两个队列实现栈结构，使用自定义的栈结构实现图的深度优先搜索
+- [ ] 使用队列实现图的深度优先搜索 => 使用两个队列实现栈结构，使用自定义的栈结构实现图的深度优先搜索
+
+
 
 
 
