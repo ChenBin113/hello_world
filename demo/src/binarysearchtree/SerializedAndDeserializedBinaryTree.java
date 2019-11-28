@@ -6,10 +6,12 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import static binarysearchtree.PrintBinaryTree.printTree;
+import static util.InitTheTree.initTheTree;
 
 public class SerializedAndDeserializedBinaryTree {
 
     public static String serializedBinaryTree(TreeNode root) {
+        System.out.println("-------------------serializedBinaryTree-------------------");
         StringBuilder sb = new StringBuilder();
         preOrderTraversal(root, sb);
         return sb.toString();
@@ -20,12 +22,13 @@ public class SerializedAndDeserializedBinaryTree {
             sb.append("#!");
             return;
         }
-        sb.append(node.val).append("!");
+        sb.append(node.value).append("!");
         preOrderTraversal(node.left, sb);
         preOrderTraversal(node.right, sb);
     }
 
     public static TreeNode deSerializedBinaryTree(String tree) {
+        System.out.println("-------------------deSerializedBinaryTree-------------------");
         String[] s = tree.split("!");
         Queue<TreeNode> queue = new LinkedList<>();
         for (int i = 0; i < s.length; i++) {
@@ -43,7 +46,7 @@ public class SerializedAndDeserializedBinaryTree {
     }
 
     private static void makeTree(TreeNode root, Queue<TreeNode> queue) {
-        if (root == null || root.val == Integer.MIN_VALUE) {
+        if (root == null || root.value == Integer.MIN_VALUE) {
             return;
         }
         root.left = queue.poll();
@@ -53,18 +56,9 @@ public class SerializedAndDeserializedBinaryTree {
     }
 
     public static void main(String[] args) {
-        // ¹¹½¨¶þ²æÊ÷
-        TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(3);
-        root.left.left = new TreeNode(4);
-        root.right.left = new TreeNode(5);
-        root.right.right = new TreeNode(6);
-        root.right.left.left = new TreeNode(7);
-        root.right.left.right = new TreeNode(8);
-        System.out.println(serializedBinaryTree(root));
-
+        TreeNode root = initTheTree();
         String s = serializedBinaryTree(root);
+        System.out.println(s);
         TreeNode tree = deSerializedBinaryTree(s);
         printTree(tree);
     }

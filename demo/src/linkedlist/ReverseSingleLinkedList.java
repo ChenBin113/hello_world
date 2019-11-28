@@ -2,6 +2,9 @@ package linkedlist;
 
 import util.Node;
 
+import static util.InitLinkedList.initLinkedList;
+import static util.Print.printLinkedList;
+
 public class ReverseSingleLinkedList {
     public static Node reverseOne(Node head) {
         if (head == null || head.next == null) {
@@ -30,5 +33,15 @@ public class ReverseSingleLinkedList {
             head = next;
         }
         return pre;
+    }
+
+
+    public static void main(String[] args) {
+        Node head = initLinkedList();
+        printLinkedList(head);
+        Node new_head_one = reverseOne(head);
+        printLinkedList(new_head_one);
+        Node new_head_two = reverseTwo(new_head_one);
+        printLinkedList(new_head_two);
     }
 }

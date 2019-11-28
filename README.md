@@ -1855,24 +1855,110 @@ public static void printCommonPart(Node head1, Node head2) {
 ```
 1->2->1，返回 true。
 1->2->2->1，返回 true。
-15->6->15，返回true。
-1->2->3，返回false。
+15->6->15，返回 true。
+1->2->3，返回 false。
 ```
 
-思路：第一次遍历，使用一个栈结构存储节点，第二次遍历，与弹出栈存储的值比较，相同为 true 不同为 false。也可以使用快慢指针得到链表的中点，然后将中点后的值压栈，然后重头开始遍历，省下一半的栈空间，但是在计算空间复杂度时还是会忽略不计系数。
+### 思路
+
+第一次遍历，使用一个栈结构存储节点，第二次遍历，与弹出栈存储的值比较，相同为 true 不同为 false。
+
+可以使用快慢指针得到链表的对称轴的下一个节点，然后将值压栈，然后重头开始遍历，省下一半的栈空间，但是在计算空间复杂度时还是会忽略不计系数。
 
 ```java
-public static boolean isPalindrome() {
+// need n extra space
+public static boolean isPalindromeOne(Node head) {
+    if (head == null || head.next == null) return true;
+    Stack<Node> stack = new Stack<>();
+    Node cur = head;
+    while (cur != null) {
+        stack.push(cur);
+        cur = cur.next;
+    }
+    while (head != null) {
+        if (head.val != stack.pop().val) {
+            return false;
+        }
+        head = head.next;
+    }
+    return true;    
+}
+
+// need n/2 extra space
+public static boolean isPalindromeTwo(Node head) {
+    if (head == null || head.next == null) return true;
+    // These steps ensure the rigth point can be the exactly position. 
+    Node right = head.next;
+    Node cur = head;
+    while (cur.next != null && cur.next.next != null) {
+        right = right.next;
+        cur = cur.next.next;
+    }
     
+    Stack<Node> stack = new Stack<>();
+    while (right != null) {
+        stack.push(right);
+        right = right.next;
+    }
     
+    while (!stack.isEmpty()) {
+        if (stack.pop().val != head.val) {
+            return false;
+        }
+        head = head.next;
+    }
+    return true;
 }
 ```
 
+### 快慢指针举例
 
+通过代码是可以适应链表长度为奇数和偶数的情况，right 指针都会指到右半部分的链表的初始位置。
 
-进阶：如果链表长度为N，时间复杂度达到O(N)，额外空间复杂度达到O(1)。
+```java
+c: point cur
+r: point right
 
-思路：
+1->2->3->2->1
+    
+1.
+1->2->3->2->1
+↑  ↑
+c  r
+
+2.
+1->2->3->2->1
+      ↑
+     c r
+     
+3.
+1->2->3->2->1
+         ↑  ↑
+         r  c
+         
+1->2->3->3->2->1
+        
+1.
+1->2->3->3->2->1
+↑  ↑
+c  r
+
+2.
+1->2->3->3->2->1
+      ↑
+     c r
+
+3.
+1->2->3->3->2->1
+         ↑  ↑
+         r  c
+```
+
+### 进阶
+
+如果链表长度为N，时间复杂度达到O(N)，额外空间复杂度达到O(1)。
+
+### 思路
 
 ```java
 1.快慢指针，得到链表的中点，将中点后的节点逆序。
@@ -1884,6 +1970,167 @@ public static boolean isPalindrome() {
 1->2->3->2->1
 ```
 
+### 实现
+
+```java
+public static boolean isPalindromeThree(Node head) {
+    if (head == null || head.next == null) return true;
+    Node n1 = head;
+    Node n2 = head;
+    // n1 will be the end of left part or center
+    while (n2.next != null && n2.next.next != null) {
+        n1 = n1.next;
+        n2 = n2.next.next;
+    }
+    // n2 will be the begin of right part
+    n2 = n1.next;
+    n1.next = null;
+    
+    // convert the right part
+    Node n3 = null;
+    while (n2 != null) {
+        n1 = n2.next; // save next node
+        n2.next = n3;
+        n3 = n2;
+        n2 = n1;
+    }
+    // n3 point the end of list; n2 & n1 is null
+    // n3 | n2 | n1
+    n1 = head;
+    n2 = n3;
+    
+    boolean res = true;
+    // compare n1 n3; n2 save the end of list
+    while (n1 != null && n3 != null) {
+        if (n1.val != n3.val) {
+            res = false;
+            break;
+        }
+        n1 = n1.next;
+        n3 = n3.next;
+    }
+    
+    // reconvert the right part
+    // reconvert the end of list
+    n3 = n2.next;
+    n2.next = null;
+    
+    // n1 | n3 | n2
+    while (n3 != null) {
+        n1 = n3.next; // save the node
+        n3.next = n2;
+        n2 = n3;
+        n3 = n1;
+    }
+    
+    return res;
+}
+```
+
+在遍历的过程中，修改了链表的结构，无论结果如何，最终还是要将改变的结构再逆转回来。
+
+## 问题四 单向链表的荷兰国旗问题
+
+将单向链表按某值划分成左边小、中间相等、右边大的形式。
+
+给定一个单向链表的头节点 head，节点的值类型是整型，再给定一个整数 pivot。实现一个调整链表的函数，将链表调整为左部分都是值小于 pivot 的节点，中间部分都是值等于 pivot 的节点，右部分都是值大于 pivot 的节点。
+除这个要求外，对调整后的节点顺序没有更多的要求。 
+
+例如：链表 9->0->4->5->1，pivot=3。 调整后链表可以是 1->0->4->9->5，也可以是 0->1->9->5->4。总之，满足左部分都是小于 3 的节点，中间部分都是等于 3 的节点（本例中这个部分为空），右部分都是大于 3 的节点即可。对某部分内部的节点顺序不做要求。
+
+### 思路
+
+用 Node 数组存储节点，按照数组的荷兰国旗问题求解，然后按照数组的顺序将链表连接。
+
+### 实现
+
+```java
+public static Node listPartition1(Node head, int pivot) {
+    if (head == null || head.next == null) return head;
+    Node cur = head;
+    int count = 0;
+    while (cur != null) {
+        count++;
+        cur = cur.next;
+    }
+    Node[] arr = new Node[count];
+    cur = head;
+    for (int i = 0; i < arr.length; i++) {
+        arr[i] = cur;
+        cur = cur.next;
+    }
+
+    // sort part of linkedlist
+    partition(arr, pivot);
+
+    int i;
+    for (i = 0; i < arr.length - 1; i++) {
+        arr[i].next = arr[i + 1];
+    }
+    arr[i].next = null;
+    return arr[0];
+}
+
+public static void partition(Node[] arr, int pivot) {
+    int less = -1;
+    int more = arr.length;
+    int cur = 0;
+    while (cur < more) {
+        if (arr[cur].value < pivot) {
+            swap(arr, cur, less + 1);
+            less++;
+            cur++;
+        } else if (arr[cur].value == pivot) {
+            cur++;
+        } else {
+            swap(arr, cur, more - 1);
+            more--;
+        }
+    }
+}
+
+private static void swap(Node[] arr, int cur, int position) {
+    Node tmp = arr[cur];
+    arr[cur] = arr[position];
+    arr[position] = tmp;
+}
+```
+
+
+
+### 进阶
+
+在原问题的要求之上再增加如下两个要求。在左、中、右三个部分的内部也做**顺序**要求，要求每部分里的节点从左到右的
+顺序与原链表中节点的先后次序一致。 
+
+例如：链表 9->0->4->5->1，pivot=3。调整后的链表是 0->1->9->4->5。 在满足原问题要求的同时，左部分节点从左到
+右为 0、1。在原链表中也是先出现 0，后出现 1；中间部分在本例中为空，不再讨论；右部分节点从左到右为9、4、5。在原链表中也是先出现9，然后出现4，最后出现5。
+
+如果链表长度为N，时间复杂度请达到O(N)，额外空间复杂度请达到O(1)。
+
+### 思路
+
+这个时候不能再使用荷兰国旗问题的做法解答，原因是
+
+- 题目的要求是做到划分的稳定性
+- 荷兰国旗问题的做法无法实现要求的稳定性
+- 原来的做法空间复杂度为 O(N)
+
+可以使用三对变量将链表划分成 Small Equal Big 三个区域，先遍历第一遍，找出链表第一个小于 pivot 的节点，使用 less 变量指向它，依次找 equal more 变量指向的节点，注意链表中可能不存在三个区域，即变量可以为 null。
+
+第二次遍历，使用 less_end equal_end more_end 三个变量将后面的节点依次遍历，最终将一个链表划分成三段链表。
+
+最后将 less_end 和 equal 相连，将 equal_end 和 more 相连，注意此时 6 个变量中的空值。如果为空，需要与下一个变量连接。
+
+```java
+less -> less_end -> equal -> equal_end -> more -> more_end
+```
+
+### 实现
+
+```java
+
+```
 
 
 
