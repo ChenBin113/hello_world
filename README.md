@@ -2154,6 +2154,67 @@ less -> less_end -> equal -> equal_end -> more -> more_end
 
 ```java
 public static Node listPartition2(Node head) {
+    Node lH = null;
+    Node lT = null;
+    
+    Node eH = null;
+    Node eT = null;
+    
+    Node mH = null;
+    Node mT = null;
+    
+    Node next = null;
+    
+    while (head != null) {
+        next = head.next;
+        head.next = null;
+        
+        if (head.value < pivot) {
+            if (lH == null) {
+                lH = head;
+                lT = head;
+            } else {
+                lT.next = head;
+                lT = lT.next;
+            }
+        } else if (head.value == pivot) {
+            if (eH == null) {
+                eH = head;
+                eT = head;
+            } else {
+                eT.next = head;
+                eT = eT.next;
+            }
+        } else {
+            if (mH == null) {
+                mH = head;
+                mT = head;
+            } else {
+                mT.next = head;
+                mT = mT.next;
+            }
+        }
+		head = next;
+    }
+    
+    //less 区域存在
+    if (lT != null) {
+        lT.next = eH;
+    } else {
+        //equal 区域存在
+        if (eT != null) {
+            eT.next = eH;
+        } else {
+            //more 区域存在
+            if (mT != null) {
+                
+            } else {
+                
+            }
+        }
+    }
+    
+    
     
 }
 ```
