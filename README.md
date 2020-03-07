@@ -148,7 +148,29 @@ public static void bubbleSort(int[] arr) {
 }
 ```
 
-冒泡排序比较简单，但是容易出现冗余的循环，即使是一个已经排序的数组传入仍然需要遍历 O(n ^ 2)。
+冒泡排序比较简单，但是容易出现冗余的循环，即使是一个已经排序的数组传入仍然需要遍历 O(n ^ 2)。可以对其进行改进：
+
+```java
+public static void bubbleSort(int[] arr) {
+	if (arr == null || arr.length < 2) return;
+    for (int i = arr.length - 1; i > 0; i--) {
+        //如果一轮循环没有遍历过，说明数组已经有序，可以终止外层循环了
+        boolean flag = true;
+        
+        for (int j = 0; j < i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr, j);
+                flag = false;
+            }
+        }
+        if (flag) {
+            break;
+        }
+    }
+}
+```
+
+
 
 ## 选择排序
 
